@@ -3,45 +3,24 @@
 namespace Bachilli\RequestRules;
 
 use Illuminate\Foundation\Http\FormRequest;
-use \Exception;
 
-class RequestRule extends FormRequest
+class RequestRule
 {
-    protected $mainRules = [];
-
     protected $otherRules = [];
 
     protected $excludedList = [];
 
     protected $mergedRules = [];
 
-    public function __construct()
+    public function resolveRules($mainRules, $otherRules)
     {
-        $this->mainRules = $this->rules();
-        $this->get();
-    }
+        $rules = $mainRules;
 
-    protected function isInExcludedList($excluded)
-    {
-
-    }
-
-    public function merge(RequestRule $requestClass, string $fieldName, ?string $fieldValidations = null) : void
-    {
-        $this->otherRules = array_push(
-            $this->otherRules,
-            [
-                $requestClass,
-                $fieldName,
-                $fieldValidations
-            ]);
-    }
-
-    public function get() : array
-    {
         foreach ($this->otherRules as $otherRule) {
-            foreach ($otherRule[0]->rules() as $ruleField => $ruleValidations) {
-                $this->rules["{$otherRule[1]}.$ruleField"] = $ruleValidations;
+            $ruleClass = new $otherRule[0];
+
+            foreach ($ruleClass->rules() as $ruleField => $ruleValidations) {
+                $rules["{$otherRule[1]}.$ruleField"] = $ruleValidations;
 
                 if (strpos($otherRule[1], '*') !== false && $otherRule[2]) {
                     $rules[str_replace('.*', '', $otherRule[1])] = $otherRule[2];
@@ -49,36 +28,11 @@ class RequestRule extends FormRequest
             }
         }
 
-        return $this->mainRules = $rules;
+        return $rules;
     }
 
-    public function only(array $only) : void
+    public function merge($requestClass, ?string $fieldName, ?string $validations = null) : RuleEntity
     {
-        foreach ($only as $item) {
-            foreach ($this->rules() as $ruleField => $ruleValidation) {
-                if ($item instanceof FormRequest && !$ruleField instanceof $item) {
-                    array_push($this->excludedList, $ruleField);
-                }
-
-                if (!$item instanceof FormRequest && $item != $ruleField) {
-                    array_push($this->excludedList, $ruleField);
-                }
-            }
-        }
-    }
-
-    public function except(array $except)
-    {
-        foreach ($except as $item) {
-            foreach ($this->rules() as $ruleField => $ruleValidation) {
-                if ($item instanceof FormRequest && $ruleField instanceof $item) {
-                    array_push($this->excludedList, $ruleField);
-                }
-
-                if (!$item instanceof FormRequest && $item === $ruleField) {
-                    array_push($this->excludedList, $ruleField);
-                }
-            }
-        }
+        return new RuleEntity($requestClass, $fieldName, $validations);
     }
 }

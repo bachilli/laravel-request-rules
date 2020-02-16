@@ -28,12 +28,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Bachilli\\LaravelRequestRules\\": "src"
+            "Bachilli\\RequestRules\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Bachilli\\LaravelRequestRules\\Tests\\": "tests"
+            "Bachilli\\RequestRules\\Tests\\": "tests"
         }
     },
     "scripts": {
@@ -47,10 +47,10 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Bachilli\\RequestRules\\RequestRuleServiceProvider"
+                "Bachilli\\RequestRules\\Providers\\RequestRuleServiceProvider"
             ],
             "aliases": {
-                "LaravelRequestRules": "Bachilli\\RequestRules\\RequestRuleFacade"
+                "LaravelRequestRules": "Bachilli\\RequestRules\\Facades\\RequestRuleFacade"
             }
         }
     }
