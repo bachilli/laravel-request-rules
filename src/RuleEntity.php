@@ -27,18 +27,18 @@ class RuleEntity
     {
         $rules = [];
 
+        if ($this->validations) {
+            $rules[$this->fieldName] = $this->validations;
+        }
+
         foreach ($this->rules as $ruleField => $ruleValidations) {
             $rules["{$this->fieldName}.$ruleField"] = $ruleValidations;
-
-            if ($this->validations) {
-                $rules[$this->fieldName] = $this->validations;
-            }
         }
 
         return $rules;
     }
 
-    public function setFieldName(string $fieldName)
+    protected function setFieldName(string $fieldName)
     {
         $this->fieldName = $fieldName;
 
@@ -47,33 +47,25 @@ class RuleEntity
         }
     }
 
-    public function only(array $only) : void
+    public function only(array $only) : self
     {
-        foreach ($only as $item) {
-            foreach ($this->rules() as $ruleField => $ruleValidation) {
-                if ($item instanceof FormRequest && !$ruleField instanceof $item) {
-                    array_push($this->excludeList, $ruleField);
-                }
-
-                if (!$item instanceof FormRequest && $item != $ruleField) {
-                    array_push($this->excludeList, $ruleField);
-                }
+        foreach ($this->rules as $ruleField => $ruleValidation) {
+            if (!in_array($ruleField, $only)) {
+                unset($this->rules[$ruleField]);
             }
         }
+
+        return $this;
     }
 
-    public function except(array $except)
+    public function except(array $except) : self
     {
-        foreach ($except as $item) {
-            foreach ($this->rules() as $ruleField => $ruleValidation) {
-                if ($item instanceof FormRequest && $ruleField instanceof $item) {
-                    array_push($this->excludeList, $ruleField);
-                }
-
-                if (!$item instanceof FormRequest && $item === $ruleField) {
-                    array_push($this->excludeList, $ruleField);
-                }
+        foreach ($this->rules as $ruleField => $ruleValidation) {
+            if (in_array($ruleField, $except)) {
+                unset($this->rules[$ruleField]);
             }
         }
+
+        return $this;
     }
 }
