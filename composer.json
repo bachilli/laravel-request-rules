@@ -50,11 +50,7 @@
                 "Bachilli\\RequestRules\\Providers\\RequestRuleServiceProvider"
             ],
             "aliases": {
-                "RequestRule": "Bachilli\\RequestRules\\Facades\\
-
-## Laravel Package Boilerplate
-
-This package was generated using the [Laravel Package Boilerplate](https://laravelpackageboilerplate.com)."
+                "RequestRule": "Bachilli\\RequestRules\\Facades\\RequestRule"
             }
         }
     }
