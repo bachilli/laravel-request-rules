@@ -28,8 +28,8 @@ public function rules()
             'name' => 'required',
             ],
             [
-                RequestRule::merge(VolumeEntity::class, 'volumes.*', 'required|array')->only(['dimensions'])->get(),
-                RequestRule::merge(ProductEntity::class, 'products.*')->except(['price'])->get(),
+                RequestRule::merge(VolumeEntityFormRequest::class, 'volumes.*', 'required|array')->only(['dimensions'])->get(),
+                RequestRule::merge(ProductEntityFormRequest::class, 'products.*')->except(['price'])->get(),
             ]);
     }
 ```
