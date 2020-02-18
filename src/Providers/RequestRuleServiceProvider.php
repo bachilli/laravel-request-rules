@@ -2,7 +2,7 @@
 
 namespace Bachilli\RequestRules\Providers;
 
-use Bachilli\RequestRules\RequestRule;
+use Bachilli\RequestRules\Factory;
 use Illuminate\Support\ServiceProvider;
 
 class RequestRuleServiceProvider extends ServiceProvider
@@ -22,7 +22,7 @@ class RequestRuleServiceProvider extends ServiceProvider
     {
         // Register the main class to use with the facade
         $this->app->singleton('request-rule', function () {
-            return new RequestRule;
+            return new Factory;
         });
     }
 }

@@ -16,6 +16,8 @@ class RuleEntity
 
     protected $validations = null;
 
+    protected $isArray = false;
+
     public function __construct(FormRequest $formRequest, $fieldName, $validations)
     {
         $this->rules = $formRequest->rules();
@@ -31,6 +33,10 @@ class RuleEntity
             $rules[$this->fieldName] = $this->validations;
         }
 
+        if ($this->isArray) {
+            $this->fieldName = $this->fieldName . '.*';
+        }
+
         foreach ($this->rules as $ruleField => $ruleValidations) {
             $rules["{$this->fieldName}.$ruleField"] = $ruleValidations;
         }
@@ -44,6 +50,7 @@ class RuleEntity
 
         if (strpos($fieldName, '*') !== false) {
             $this->fieldName = str_replace('.*', '', $fieldName);
+            $this->isArray = true;
         }
     }
 

@@ -4,7 +4,7 @@ namespace Bachilli\RequestRules;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class RequestRule
+class Factory
 {
     public function resolveRules($mainRules, $otherRules)
     {

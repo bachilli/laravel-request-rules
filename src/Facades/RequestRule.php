@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Facade;
 /**
  * @see \Bachilli\LaravelRequestRules\Skeleton\SkeletonClass
  */
-class RequestRuleFacade extends Facade
+class RequestRule extends Facade
 {
     /**
      * Get the registered name of the component.

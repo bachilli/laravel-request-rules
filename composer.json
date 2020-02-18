@@ -50,7 +50,7 @@
                 "Bachilli\\RequestRules\\Providers\\RequestRuleServiceProvider"
             ],
             "aliases": {
-                "LaravelRequestRules": "Bachilli\\RequestRules\\Facades\\RequestRuleFacade"
+                "RequestRule": "Bachilli\\RequestRules\\Facades\\RequestRule"
             }
         }
     }
