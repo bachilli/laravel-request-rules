@@ -41,17 +41,17 @@ from other FormRequests.
 
 There some helper methods available to use when you're importing rules. Below the description of all methods.
 
-### merge(FormRequest::class, 'desired_field_name', 'optional_validations")
+### merge(SomeFormRequest::class, 'desired_field_name', 'optional_validations")
 
 In the `desired_field_name` you can pass with the suffix `.*` to specify an array field.
 
 The `optional_validations` are useful when you need an array field and want some validation, like `required`.
 
-### only(['field_name', FormRequestRule::class])
+### only(['field_name', SomeFormRequest::class])
 
 You can import only rules if you want.
 
-### except(['field_name', FormRequestRule::class])
+### except(['field_name', SomeFormRequest::class])
 
 You can do the opposite, importing all rules, except the specified ones.
 
