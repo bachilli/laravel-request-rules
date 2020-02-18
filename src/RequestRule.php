@@ -2,8 +2,6 @@
 
 namespace Bachilli\RequestRules;
 
-use Illuminate\Foundation\Http\FormRequest;
-
 class RequestRule
 {
     public function resolveRules(array $mainRules, array $otherRules) : array
