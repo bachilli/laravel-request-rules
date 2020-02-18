@@ -5,7 +5,7 @@
 [![Quality Score](https://img.shields.io/scrutinizer/g/bachilli/laravel-request-rules.svg?style=flat-square)](https://scrutinizer-ci.com/g/bachilli/laravel-request-rules)
 [![Total Downloads](https://img.shields.io/packagist/dt/bachilli/laravel-request-rules.svg?style=flat-square)](https://packagist.org/packages/bachilli/laravel-request-rules)
 
-Stop duplicating code and validations for FormRequests. This package provides reuse of FormRequest components in a generic way!
+Stop duplicating code and validations for FormRequests. This package provides reuse of FormRequest rules in a generic way!
 
 ## Installation
 
