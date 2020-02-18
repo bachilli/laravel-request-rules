@@ -10,9 +10,10 @@ use Illuminate\Support\Facades\Facade;
 class RequestRule extends Facade
 {
     /**
-     * Get the registered name of the component.
+     * @method static array resolveRules(array $mainRules, array $otherRules)
+     * @method static \Bachilli\RequestRules\RuleEntity merge($requestClass, string $fieldName, string|null $validations = null)
      *
-     * @return string
+     * @see \Bachilli\RequestRules\Factory
      */
     protected static function getFacadeAccessor()
     {

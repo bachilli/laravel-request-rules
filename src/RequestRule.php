@@ -4,9 +4,9 @@ namespace Bachilli\RequestRules;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class Factory
+class RequestRule
 {
-    public function resolveRules($mainRules, $otherRules)
+    public function resolveRules(array $mainRules, array $otherRules) : array
     {
         $rules = [];
 
@@ -17,7 +17,7 @@ class Factory
         return array_merge($mainRules, $rules);
     }
 
-    public function merge($requestClass, ?string $fieldName, ?string $validations = null) : RuleEntity
+    public function merge($requestClass, string $fieldName, ?string $validations = null) : RuleEntity
     {
         return new RuleEntity(new $requestClass, $fieldName, $validations);
     }
