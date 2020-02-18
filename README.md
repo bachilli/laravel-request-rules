@@ -1,4 +1,4 @@
-# Lararvel Request Rules
+# Reuse rules and compose FormRequests
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/bachilli/laravel-request-rules.svg?style=flat-square)](https://packagist.org/packages/bachilli/laravel-request-rules)
 [![Build Status](https://img.shields.io/travis/bachilli/laravel-request-rules/master.svg?style=flat-square)](https://travis-ci.org/bachilli/laravel-request-rules)
