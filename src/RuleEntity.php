@@ -37,10 +37,11 @@ class RuleEntity
             $this->fieldName = $this->fieldName . '.*';
         }
 
+        $prefix = (empty($this->fieldName)) ? '' : "{$this->fieldName}.";
         foreach ($this->rules as $ruleField => $ruleValidations) {
-            $rules["{$this->fieldName}.$ruleField"] = $ruleValidations;
+            $rules[$prefix.$ruleField] = $ruleValidations;
         }
-
+        // dd($rules);
         return $rules;
     }
 

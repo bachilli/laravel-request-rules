@@ -9,10 +9,21 @@ class RequestRule
         $rules = [];
 
         foreach ($otherRules as $otherRule) {
-            $rules = array_merge($rules, $otherRule);
+
+            $rules = array_merge($rules, $otherRule->get());
         }
 
-        return array_merge($mainRules, $rules);
+        foreach($mainRules as $label => $mainRule) {
+
+            if($mainRule instanceof RuleEntity){
+                $rules = array_merge($rules,$mainRule->get());
+                continue;
+            }
+
+            $rules = array_merge($rules,[$label => $mainRule]);
+        }
+
+        return $rules;
     }
 
     public function merge($requestClass, string $fieldName, ?string $validations = null) : RuleEntity
