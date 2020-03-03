@@ -41,7 +41,7 @@ class RuleEntity
         foreach ($this->rules as $ruleField => $ruleValidations) {
             $rules[$prefix.$ruleField] = $ruleValidations;
         }
-        // dd($rules);
+        
         return $rules;
     }
 
